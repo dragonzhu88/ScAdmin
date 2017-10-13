@@ -1,0 +1,99 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/ScAdmin/Static/css/main.css">
+    <link rel="stylesheet" href="/ScAdmin/Static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ScAdmin/Static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/ScAdmin/Static/css/ace.min.css" id="main-ace-style" />
+    <!--[if lte IE 9]>
+    <![endif]-->
+    <link rel="stylesheet" href="/ScAdmin/Static/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="/ScAdmin/Static/css/ace-rtl.min.css" />
+    <!--[if lte IE 9]>
+    <![endif]-->
+    <script src='/ScAdmin/Static/js/jquery.min.js'></script>
+    <script src="/ScAdmin/Static/js/html5shiv.min.js"></script>
+    <script src="/ScAdmin/Static/js/respond.min.js"></script>
+    <script src="/ScAdmin/Static/js/md5.js"></script>
+    <script src="/ScAdmin/Static/js/jquery-ui.custom.min.js"></script>
+    <script src="/ScAdmin/Static/js/jquery.ui.touch-punch.min.js"></script>
+</head>
+
+<body>
+<!-- #section:basics/content.breadcrumbs -->
+<form class="form-horizontal" role="form" id="myform" action="{:U('index/adminAddDo')}" method="POST">
+    <!-- #section:elements.form -->
+    <div class="form-group">
+        <label class="col-sm-5 control-label no-padding-right" for="form-field-1"> 账号：</label>
+
+        <div class="col-sm-7">
+            <input type="text" id="user_name" placeholder="登录账号" class="col-xs-10 col-sm-5" name="login_name"/>
+        </div>
+    </div>
+    <!-- /section:elements.form -->
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-5 control-label no-padding-right" for="form-field-2"> 密码： </label>
+
+        <div class="col-sm-7">
+            <input type="password" id="pwd_login" placeholder="登录密码" class="col-xs-10 col-sm-5" name="pwd"/>
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-5 col-md-7">
+            <button class="btn btn-info" type="button" onclick="fromSubmit();">
+                <i class="ace-icon fa fa-check bigger-110"></i>
+                登录
+            </button>
+
+            &nbsp; &nbsp; &nbsp;
+            <!--<button class="btn" type="reset" onclick="register()">-->
+                <!--<i class="ace-icon fa fa-undo bigger-110"></i>-->
+                <!--注册-->
+            <!--</button>-->
+        </div>
+    </div>
+
+</form>
+<script>
+    function fromSubmit() {
+        var user_name = $('#user_name').val()
+        var pwd = $('#pwd_login').val()
+
+        var url = '{:U("index/login")}';
+        $.ajax({
+            url: url,// 跳转到 action
+            data: {
+                user_name: user_name,
+                pwd: pwd
+            },
+            type: 'post', //用post方法
+            cache: false,
+            dataType: 'json',//数据格式为json,定义这个格式data不用转成对象
+            success: function (data) {
+                console.log(data)
+                if(data.code == 200){
+                    var jumpTo = '{:U("index/adminList")}';
+                    window.location.href = jumpTo
+                }else{
+                    alert(data.msg)
+                }
+
+            },
+            error: function () {
+                alert("异常！");
+            }
+        });
+    }
+
+    function register() {
+        var jumpTo = '{:U("index/adminRegister")}';
+        window.location.href = jumpTo
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<include file="./ScAdmin/View/public/header.html" />
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="index.html">控制台</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)">等级信息</a>
+        </li>
+        <li>
+            <a href="#">修改等级信息</a>
+        </li>
+    </ul><!-- /.breadcrumb -->
+
+    <!-- #section:basics/content.searchbox -->
+
+</div>
+<div class="page-content">
+
+    <div class="page-content-area">
+
+        <div class="row">
+            <div class="col-xs-12">
+
+                <form class="form-horizontal" role="form" id="myform" action="{:U('level/levelModifyDo')}" method="POST">
+                    <!-- #section:elements.form -->
+                    <input hidden name="id" value="{$ret['id']}">
+                    <input hidden id="is_vip" value="{$ret['is_vip']}">
+                    <input hidden id="customer_service" value="{$ret['customer_service']}">
+                    <input hidden id="accelerate"  value="{$ret['accelerate']}">
+                    <input hidden id="one_on_one" value="{$ret['one_on_one']}">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 等级：</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" id="form-field-1" placeholder="等级" class="col-xs-10 col-sm-5" name="gread" value="{$ret['gread']}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">需要达到打码量上线： </label>
+
+                        <div class="col-sm-9">
+                            <input type="text" id="form-field-1-1" placeholder="需要达到打码量" class=" col-xs-10 col-sm-5" value="{$ret['bet_total']}" name="bet_total" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">需要达到打码量下限： </label>
+
+                        <div class="col-sm-9">
+                            <input type="text" id="form-field-1-2" placeholder="需要达到打码量" class=" col-xs-10 col-sm-5" value="{$ret['bet_total_max']}" name="bet_total_max" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">等级礼金： </label>
+
+                        <div class="col-sm-9">
+                            <input type="text"  placeholder="等级礼金" class=" col-xs-10 col-sm-5" name="grade_gift"  value="{$ret['grade_gift']}" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">周俸： </label>
+
+                        <div class="col-sm-9">
+                            <input type="text"  placeholder="周俸" class=" col-xs-10 col-sm-5" name="week_gift" value="{$ret['week_gift']}"  />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">月俸： </label>
+
+                        <div class="col-sm-9">
+                            <input type="text"  placeholder="月俸" class=" col-xs-10 col-sm-5" name="month_gift"  value="{$ret['month_gift']}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">荣升VIP： </label>
+
+                        <div class="col-sm-9">
+                            <input type="radio" name="is_vip" value="1" {$checked(1,$is_vip)}>是 &nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="is_vip" value="2" {$checked(2,$is_vip)}>否
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">24小时客服： </label>
+
+                        <div class="col-sm-9">
+                            <input type="radio" name="customer_service" value="1" {$checked(1,$customer_service)}>是 &nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="customer_service" value="2" {$checked(2,$customer_service)}>否
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">加速充值出款通道： </label>
+
+                        <div class="col-sm-9">
+                            <input type="radio" name="accelerate" value="1" {$checked(1,$accelerate)}>是 &nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="accelerate" value="2" {$checked(2,$accelerate)}>否
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">是否拥有一对一客经理： </label>
+
+                        <div class="col-sm-9">
+                            <input type="radio" name="one_on_one" value="1" {$checked(1,$one_on_one)}>是 &nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="one_on_one" value="2" {$checked(2,$one_on_one)}>否
+                        </div>
+                    </div>
+
+                    <!-- /section:elements.form -->
+                    <div class="space-4"></div>
+
+
+                    <div class="space-4"></div>
+
+
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button class="btn btn-info" type="button" onclick="fromSubmit();">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                提交
+                            </button>
+
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn" type="reset">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                重置
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div><!-- /.page-content -->
+</div><!-- /.main-content -->
+
+<include file="./ScAdmin/View/public/floor.html"/>
+<script>
+    window.onload=function(){
+        if( document.getElementById('is_vip').value == 1){
+            document.getElementsByName('is_vip')[0].checked='checked';
+        }else{
+            document.getElementsByName('is_vip')[1].checked='checked';
+        }
+
+        if(document.getElementById('customer_service').value == 1){
+            document.getElementsByName('customer_service')[0].checked='checked';
+        }else{
+            document.getElementsByName('customer_service')[1].checked='checked';
+        }
+
+        if(document.getElementById('accelerate').value == 1){
+            document.getElementsByName('accelerate')[0].checked='checked';
+        }else{
+            document.getElementsByName('accelerate')[1].checked='checked';
+        }
+
+        if(document.getElementById('one_on_one').value == 1){
+            document.getElementsByName('one_on_one')[0].checked='checked';
+        }else{
+            document.getElementsByName('one_on_one')[1].checked='checked';
+        }
+    }
+</script>

@@ -1,0 +1,116 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/ScAdmin/Static/css/main.css">
+    <link rel="stylesheet" href="/ScAdmin/Static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ScAdmin/Static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/ScAdmin/Static/css/ace.min.css" id="main-ace-style" />
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="/ScAdmin/Static/css/ace-part2.min.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="/ScAdmin/Static/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="/ScAdmin/Static/css/ace-rtl.min.css" />
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="/ScAdmin/Static/css/ace-ie.min.css" />
+    <![endif]-->
+    <script src='/ScAdmin/Static/js/jquery.min.js'></script>
+    <script src="/ScAdmin/Static/js/html5shiv.min.js"></script>
+    <script src="/ScAdmin/Static/js/respond.min.js"></script>
+    <script src="/ScAdmin/Static/js/md5.js"></script>
+    <script src="/ScAdmin/Static/js/jquery-ui.custom.min.js"></script>
+    <script src="/ScAdmin/Static/js/jquery.ui.touch-punch.min.js"></script>
+</head>
+
+<body>
+<!-- #section:basics/content.breadcrumbs -->
+<form class="form-horizontal" role="form" id="myform" action="{:U('index/registerDo')}" method="POST">
+    <!-- #section:elements.form -->
+    <div class="form-group">
+        <label class="col-sm-5 control-label no-padding-right" for="form-field-1"> 账号：</label>
+
+        <div class="col-sm-7">
+            <input type="text" id="user_name" placeholder="登录账号" class="col-xs-10 col-sm-5" name="login_name"/>
+        </div>
+    </div>
+    <!-- /section:elements.form -->
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-5 control-label no-padding-right" for="form-field-2"> 密码： </label>
+
+        <div class="col-sm-7">
+            <input type="password" id="pwd" placeholder="登录密码" class="col-xs-10 col-sm-5" name="pwd"/>
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-5 control-label no-padding-right" for="form-field-2"> 重复密码： </label>
+
+        <div class="col-sm-7">
+            <input type="password" id="re_pwd" placeholder="登录密码" class="col-xs-10 col-sm-5" name="re_pwd"/>
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-5 col-md-7">
+            <button class="btn btn-info" type="button" onclick="formSubmit()">
+                <i class="ace-icon fa fa-check bigger-110"></i>
+                提交
+            </button>
+
+            &nbsp; &nbsp; &nbsp;
+            <button class="btn" type="reset" onclick="cancelFun()">
+                <i class="ace-icon fa fa-undo bigger-110"></i>
+                取消
+            </button>
+        </div>
+    </div>
+
+</form>
+<script>
+    function formSubmit() {
+        var user_name = $('#user_name').val()
+        var pwd = $('#pwd').val()
+        var re_pwd = $('#re_pwd').val()
+        console.log(pwd)
+        if(pwd != re_pwd){
+            alert('两次输入的密码必须一致')
+        }else{
+            var url = '{:U("index/registerDo")}';
+            $.ajax({
+                url: url,// 跳转到 action
+                data: {
+                    user_name: user_name,
+                    pwd: pwd
+                },
+                type: 'post', //用post方法
+                cache: false,
+                dataType: 'json',//数据格式为json,定义这个格式data不用转成对象
+                success: function (data) {
+                    console.log(data)
+                    if(data.code == 200){
+                        var jumpTo = '{:U("index/adminList")}';
+                        window.location.href = jumpTo
+                    }else{
+                        alert(data.msg)
+                    }
+
+                },
+                error: function () {
+                    alert("异常！");
+                }
+            });
+        }
+    }
+    function cancelFun() {
+        var jumpTo = '{:U("index/index")}';
+        window.location.href = jumpTo
+    }
+
+</script>
+</body>
+</html>
