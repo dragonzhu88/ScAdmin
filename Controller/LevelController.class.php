@@ -38,7 +38,7 @@ class LevelController extends BasesController
      * 添加等级页面
      */
 
-    public function levelAdd()
+    public function leveladd()
     {
         $this->isLogin();
         $checked = function ($one, $two) {
@@ -84,7 +84,7 @@ class LevelController extends BasesController
         $data['bet_total_max'] = $_POST['bet_total_max'];
 
         if($data['bet_total'] >= $data['bet_total_max']){
-            $this->error('设置打码量下限不能超过上限！', U("level/levelAdd"));
+            $this->error('设置打码量下限不能超过上限！', U("level/leveladd"));
             return;
         }
 
@@ -117,7 +117,7 @@ class LevelController extends BasesController
         $db = D('bet_level');
         $where['id'] = $_POST['id'];
         if($_POST['bet_total'] >= $_POST['bet_total_max']){
-            $this->error('设置打码量下限不能超过上限！', U("level/levelAdd"));
+            $this->error('设置打码量下限不能超过上限！', U("level/leveladd"));
             return;
         }
         if ($db->where($where)->save($_POST)) {

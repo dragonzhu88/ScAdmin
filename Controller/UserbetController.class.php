@@ -3,7 +3,7 @@ namespace ScAdmin\Controller;
 
 use Bases\Controller\BasesController;
 
-class UserBetController extends BasesController
+class UserbetController extends BasesController
 {
     public function __construct()
     {
@@ -22,12 +22,12 @@ class UserBetController extends BasesController
     /**
      * 上传
     */
-    public function upLoad()
+    public function upload()
     {
         $this->isLogin();
         $db = D('user_bet');
         if (empty($_FILES['file'])) {
-            $this->display('upLoad');
+            $this->display('upload');
             die;
         }
         vendor("PHPExcel.PHPExcel");
@@ -59,7 +59,7 @@ class UserBetController extends BasesController
             $data['bet'] = '';
             $data['added'] = 0;
         }
-        $this->success('操作成功！', U("userbet/userList"));
+        $this->success('操作成功！', U("Userbet/userList"));
 
     }
 

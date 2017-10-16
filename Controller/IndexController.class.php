@@ -127,6 +127,7 @@ class IndexController extends BasesController
             $this->error('操作失败！', U("index/adminList"));
         }
     }
+ 
 
     /**
      * 添加管理员
