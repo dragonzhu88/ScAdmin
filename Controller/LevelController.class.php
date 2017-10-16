@@ -31,15 +31,19 @@ class LevelController extends BasesController
         $dbData = $db->limit($p->firstRow, $p->listRows)->select();
         foreach ($dbData as $k => $v){
             if(floatval($v['bet_total'] > 10000)){
-            $dbData[$k]['bet_total'] = strval(floatval($v['bet_total'])/10000).'万';
+                $dbData[$k]['bet_total'] = strval(floatval($v['bet_total'])/10000).'万';
+                $dbData[$k]['bet_total_search'] = floatval($v['bet_total']);
             } else{
                 $dbData[$k]['bet_total'] = floatval($v['bet_total']);
+                $dbData[$k]['bet_total_search'] = floatval($v['bet_total']);
             }
 
             if(floatval($v['bet_total_max'] > 10000)){
                 $dbData[$k]['bet_total_max'] = strval(floatval($v['bet_total_max'])/10000).'万';
+                $dbData[$k]['bet_total_max_search'] = floatval($v['bet_total_max']);
             } else{
                 $dbData[$k]['bet_total_max'] = floatval($v['bet_total_max']);
+                $dbData[$k]['bet_total_max_search'] = floatval($v['bet_total_max']);
             }
 
             if(floatval($v['grade_gift'] > 10000)){
