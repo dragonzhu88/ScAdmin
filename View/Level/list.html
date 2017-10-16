@@ -56,7 +56,7 @@
                  </td>-->
 
                 <td>
-                    <a href="#">{$vo['gread']}</a>
+                    <a href="#">{$vo['gread']}级</a>
                 </td>
                 <td>{$vo['bet_total']}</td>
                 <td>{$vo['bet_total_max']}</td>
@@ -105,6 +105,13 @@
                             查询
                         </button>
                     </div>
+                    <div class="hidden-sm hidden-xs btn-group">
+                        <button class="btn btn-xs btn-info" value="删除"
+                                onclick="deleteFun('{$vo['id']}')">
+                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                            删除
+                        </button>
+                    </div>
                 </td>
             </tr>
         </foreach>
@@ -130,7 +137,7 @@
                 <div class="page-content-area">
                     <div class="row">
                         <div class="col-xs-12">
-                            <form class="form-horizontal" role="form" id="myform" action="{:U('level/levelAddDo')}"
+                            <form class="form-horizontal" role="form" id="myform" action="{:U('Level/levelAddDo')}"
                                   method="POST">
                                 <!-- #section:elements.form -->
                                 <div class="form-group">
@@ -200,7 +207,7 @@
 </div>
 <script>
     function chang(id) {
-        var url = '{:U("level/levelOne")}';
+        var url = '{:U("Level/levelOne")}';
         $.ajax({
             url: url,// 跳转到 action
             data: {
@@ -210,7 +217,7 @@
             cache: false,
             dataType: 'json',//数据格式为json,定义这个格式data不用转成对象
             success: function (data) {
-                var jumpTo = '{:U(\"level/levelModify/id/' + id + '\")}';
+                var jumpTo = '{:U(\"Level/levelModify/id/' + id + '\")}';
                 window.location.href = jumpTo
 
             },
@@ -223,8 +230,27 @@
         $('#modal-table').hide();
     }
     function searchMember(bet_total, bet_total_max) {
-        var jumpTo = '{:U(\"level/levelSearchList/bet_total/' + bet_total + '/bet_total_max/' + bet_total_max + '\")}';
+        var jumpTo = '{:U(\"Level/levelSearchList/bet_total/' + bet_total + '/bet_total_max/' + bet_total_max + '\")}';
         window.location.href = jumpTo
+    }
+    function deleteFun(id) {
+        var url = '{:U("Level/level_del_do")}';
+        $.ajax({
+            url: url,// 跳转到 action
+            data: {
+                id: id
+            },
+            type: 'post', //用post方法
+            cache: false,
+            dataType: 'json',//数据格式为json,定义这个格式data不用转成对象
+            success: function (data) {
+               alert(data.msg);
+                location.reload();
+            },
+            error: function () {
+                alert("异常！");
+            }
+        });
     }
 </script>
 <include file="./ScAdmin/View/public/floor.html"/>

@@ -29,6 +29,13 @@ class LevelController extends BasesController
         $count = $db->count();
         $p = getpage($count,15);
         $dbData = $db->limit($p->firstRow, $p->listRows)->select();
+        foreach ($dbData as $k => $v){
+            $dbData[$k]['bet_total'] = floatval($v['bet_total']);
+            $dbData[$k]['bet_total_max'] = floatval($v['bet_total_max']);
+            $dbData[$k]['grade_gift'] = floatval($v['grade_gift']);
+            $dbData[$k]['week_gift'] = floatval($v['week_gift']);
+            $dbData[$k]['month_gift'] = floatval($v['month_gift']);
+        }
         $this->assign('list', $dbData);
         $this->assign('page', $p->show());
         $this->display('list');
@@ -140,6 +147,15 @@ class LevelController extends BasesController
         $this->assign('list',$dbData);
         $this->assign('page', $p->show());
         $this->display();
+    }
+
+    public function level_del_do(){
+        $where['id'] = $_POST['id'];
+        $db = D('bet_level');
+        $db->where($where)->delete();
+        $ret['code'] = 200;
+        $ret['msg'] = '操作成功';
+        $this->ajaxReturn($ret);
     }
 
 }

@@ -53,8 +53,16 @@ class UserbetController extends BasesController
                         break;
                 }
             }
+            $where['user_name'] = $data['user_name'];
             $data['added'] = time();
-            $db->add($data);
+            $ret = $db->where($where)->find();
+            if($ret){
+                $saveData['bet'] = $ret['bet'] + $data['bet'];
+                $db->where($where)->save($saveData);
+            }else{
+                $db->add($data);
+            }
+
             $data['user_name'] = '';
             $data['bet'] = '';
             $data['added'] = 0;
@@ -76,6 +84,7 @@ class UserbetController extends BasesController
 
         foreach($dbData as $k => $v){
             $dbData[$k]['added'] = date('Y-m-d H:i:s',$v['added']);
+            $dbData[$k]['bet'] = floatval($v['bet']);
         }
         $this->assign('list',$dbData);
         $this->assign('page', $p->show());
