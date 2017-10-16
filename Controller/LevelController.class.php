@@ -84,7 +84,7 @@ class LevelController extends BasesController
         $data['grade_gift'] = $_POST['grade_gift'];
         $data['week_gift'] = $_POST['week_gift'];
         $data['month_gift'] = $_POST['month_gift'];
-        $data['is_vip'] = $_POST['is_vip'];
+//        $data['is_vip'] = $_POST['is_vip'];
         $data['customer_service'] = $_POST['customer_service'];
         $data['accelerate'] = $_POST['accelerate'];
         $data['one_on_one'] = $_POST['one_on_one'];

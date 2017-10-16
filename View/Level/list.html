@@ -34,7 +34,7 @@
             <th>等级礼金</th>
             <th>周俸</th>
             <th>月俸</th>
-            <th class="hidden-480">荣升VIP</th>
+            <!--<th class="hidden-480">荣升VIP</th>-->
             <th class="hidden-480">24小时客服</th>
             <th class="hidden-480">加速充值出款通道</th>
             <th class="hidden-480">是否有一对一客经理</th>
@@ -63,13 +63,13 @@
                 <td>{$vo['grade_gift']}</td>
                 <td>{$vo['week_gift']}</td>
                 <td>{$vo['month_gift']}</td>
-                <td class="hidden-480">
-                    <if condition="$vo['is_vip'] == 1 ">
-                        <span class="label label-sm label-warning">是</span>
-                        <else/>
-                        <span class="label label-sm label-inverse arrowed-in">否</span>
-                    </if>
-                </td>
+                <!--<td class="hidden-480">-->
+                    <!--<if condition="$vo['is_vip'] == 1 ">-->
+                        <!--<span class="label label-sm label-warning">是</span>-->
+                        <!--<else/>-->
+                        <!--<span class="label label-sm label-inverse arrowed-in">否</span>-->
+                    <!--</if>-->
+                <!--</td>-->
                 <td class="hidden-480">
                     <if condition="$vo['customer_service'] == 1 ">
                         <span class="label label-sm label-warning">是</span>

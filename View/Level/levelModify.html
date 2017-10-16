@@ -26,7 +26,7 @@
                 <form class="form-horizontal" role="form" id="myform" action="{:U('level/levelModifyDo')}" method="POST">
                     <!-- #section:elements.form -->
                     <input hidden name="id" value="{$ret['id']}">
-                    <input hidden id="is_vip" value="{$ret['is_vip']}">
+                    <!--<input hidden id="is_vip" value="{$ret['is_vip']}">-->
                     <input hidden id="customer_service" value="{$ret['customer_service']}">
                     <input hidden id="accelerate"  value="{$ret['accelerate']}">
                     <input hidden id="one_on_one" value="{$ret['one_on_one']}">
@@ -78,14 +78,14 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">荣升VIP： </label>
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">荣升VIP： </label>-->
 
-                        <div class="col-sm-9">
-                            <input type="radio" name="is_vip" value="1" {$checked(1,$is_vip)}>是 &nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="is_vip" value="2" {$checked(2,$is_vip)}>否
-                        </div>
-                    </div>
+                        <!--<div class="col-sm-9">-->
+                            <!--<input type="radio" name="is_vip" value="1" {$checked(1,$is_vip)}>是 &nbsp;&nbsp;&nbsp;-->
+                            <!--<input type="radio" name="is_vip" value="2" {$checked(2,$is_vip)}>否-->
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">24小时客服： </label>
