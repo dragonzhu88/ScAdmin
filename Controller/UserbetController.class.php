@@ -84,7 +84,11 @@ class UserbetController extends BasesController
 
         foreach($dbData as $k => $v){
             $dbData[$k]['added'] = date('Y-m-d H:i:s',$v['added']);
-            $dbData[$k]['bet'] = floatval($v['bet']);
+            if(floatval($v['bet'] > 10000)){
+                $dbData[$k]['bet'] = strval(floatval($v['bet'])/10000).'万';
+            } else{
+                $dbData[$k]['bet'] = floatval($v['bet']);
+            }
         }
         $this->assign('list',$dbData);
         $this->assign('page', $p->show());
