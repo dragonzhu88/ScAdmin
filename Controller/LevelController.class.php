@@ -30,11 +30,35 @@ class LevelController extends BasesController
         $p = getpage($count,15);
         $dbData = $db->limit($p->firstRow, $p->listRows)->select();
         foreach ($dbData as $k => $v){
-            $dbData[$k]['bet_total'] = floatval($v['bet_total']);
-            $dbData[$k]['bet_total_max'] = floatval($v['bet_total_max']);
-            $dbData[$k]['grade_gift'] = floatval($v['grade_gift']);
-            $dbData[$k]['week_gift'] = floatval($v['week_gift']);
-            $dbData[$k]['month_gift'] = floatval($v['month_gift']);
+            if(floatval($v['bet_total'] > 10000)){
+            $dbData[$k]['bet_total'] = floatval($v['bet_total'])/10000 + '万';
+            } else{
+                $dbData[$k]['bet_total'] = floatval($v['bet_total']);
+            }
+
+            if(floatval($v['bet_total_max'] > 10000)){
+                $dbData[$k]['bet_total_max'] = floatval($v['bet_total_max'])/10000 + '万';
+            } else{
+                $dbData[$k]['bet_total_max'] = floatval($v['bet_total_max']);
+            }
+
+            if(floatval($v['grade_gift'] > 10000)){
+                $dbData[$k]['grade_gift'] = floatval($v['grade_gift'])/10000 + '万';
+            } else{
+                $dbData[$k]['grade_gift'] = floatval($v['grade_gift']);
+            }
+
+            if(floatval($v['week_gift'] > 10000)){
+                $dbData[$k]['week_gift'] = floatval($v['week_gift'])/10000 + '万';
+            } else{
+                $dbData[$k]['week_gift'] = floatval($v['week_gift']);
+            }
+
+            if(floatval($v['month_gift'] > 10000)){
+                $dbData[$k]['month_gift'] = floatval($v['month_gift'])/10000 + '万';
+            } else{
+                $dbData[$k]['month_gift'] = floatval($v['month_gift']);
+            }
         }
         $this->assign('list', $dbData);
         $this->assign('page', $p->show());
