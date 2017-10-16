@@ -31,33 +31,33 @@ class LevelController extends BasesController
         $dbData = $db->limit($p->firstRow, $p->listRows)->select();
         foreach ($dbData as $k => $v){
             if(floatval($v['bet_total'] > 10000)){
-            $dbData[$k]['bet_total'] = floatval($v['bet_total'])/10000 + '万';
+            $dbData[$k]['bet_total'] = strval(floatval($v['bet_total'])/10000).'万';
             } else{
-                $dbData[$k]['bet_total'] = floatval($v['bet_total']);
+                $dbData[$k]['bet_total'] = strval(floatval($v['bet_total'])/10000).'万';
             }
 
             if(floatval($v['bet_total_max'] > 10000)){
-                $dbData[$k]['bet_total_max'] = floatval($v['bet_total_max'])/10000 + '万';
+                $dbData[$k]['bet_total_max'] = strval(floatval($v['bet_total_max'])/10000).'万';
             } else{
-                $dbData[$k]['bet_total_max'] = floatval($v['bet_total_max']);
+                $dbData[$k]['bet_total_max'] = strval(floatval($v['bet_total_max'])/10000).'万';
             }
 
             if(floatval($v['grade_gift'] > 10000)){
-                $dbData[$k]['grade_gift'] = floatval($v['grade_gift'])/10000 + '万';
+                $dbData[$k]['grade_gift'] = strval(floatval($v['grade_gift'])/10000).'万';
             } else{
-                $dbData[$k]['grade_gift'] = floatval($v['grade_gift']);
+                $dbData[$k]['grade_gift'] = strval(floatval($v['grade_gift'])/10000).'万';
             }
 
             if(floatval($v['week_gift'] > 10000)){
-                $dbData[$k]['week_gift'] = floatval($v['week_gift'])/10000 + '万';
+                $dbData[$k]['week_gift'] = strval(floatval($v['week_gift'])/10000).'万';
             } else{
-                $dbData[$k]['week_gift'] = floatval($v['week_gift']);
+                $dbData[$k]['week_gift'] = strval(floatval($v['week_gift'])/10000).'万';
             }
 
             if(floatval($v['month_gift'] > 10000)){
-                $dbData[$k]['month_gift'] = floatval($v['month_gift'])/10000 + '万';
+                $dbData[$k]['month_gift'] = strval(floatval($v['month_gift'])/10000).'万';
             } else{
-                $dbData[$k]['month_gift'] = floatval($v['month_gift']);
+                $dbData[$k]['month_gift'] = strval(floatval($v['month_gift'])/10000).'万';
             }
         }
         $this->assign('list', $dbData);
